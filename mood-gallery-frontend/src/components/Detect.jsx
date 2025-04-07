@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import "../styles/detect.css";
+import { Link } from "react-router-dom";
 
 const Detect = () => {
   const [image, setImage] = useState(null);
@@ -15,7 +16,12 @@ const Detect = () => {
     formData.append("text", text);
 
     try {
-      const res = await axios.post("http://localhost:8000/api/upload", formData, {
+      // const res = await axios.post("http://localhost:8000/api/upload", formData, {
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // });
+      const res = await axios.post("https://web-tech-project-moodbasedimage.onrender.com/api/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -30,6 +36,7 @@ const Detect = () => {
 
   return (
     <div className="detect-container">
+      <Link to="/">Go to Home</Link>
       <form onSubmit={handleSubmit} className="detect-form">
         <input
           type="file"
