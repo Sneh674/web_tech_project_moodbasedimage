@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import "../styles/detect.css"; // Make sure this path matches your folder structure
+import "../styles/detect.css";
 
 const Detect = () => {
   const [image, setImage] = useState(null);
@@ -15,16 +15,13 @@ const Detect = () => {
     formData.append("text", text);
 
     try {
-      const res = await axios.post(
-        "http://localhost:8000/api/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const res = await axios.post("http://localhost:8000/api/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       setResponse(res.data);
+      console.log(res.data);
     } catch (err) {
       console.error(err);
       alert("Upload failed");
@@ -38,7 +35,7 @@ const Detect = () => {
           type="file"
           name="image"
           onChange={(e) => setImage(e.target.files[0])}
-          required
+        //   required
         />
         <input
           type="text"
@@ -57,7 +54,10 @@ const Detect = () => {
             <strong>Message:</strong> {response.message}
           </p>
           <p>
-            <strong>Text:</strong> {response.text}
+            <strong>Entered Text:</strong> {response.text}
+          </p>
+          <p>
+            <strong>Predicted Emotion:</strong> {response.predicted_emotion}
           </p>
           <p>
             <strong>Image URL:</strong> {response.image_url}
@@ -65,6 +65,7 @@ const Detect = () => {
           <img
             src={`http://localhost:8000${response.image_url}`}
             alt="Uploaded"
+            style={{ maxWidth: "300px", marginTop: "10px" }}
           />
         </div>
       )}
