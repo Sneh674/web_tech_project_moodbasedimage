@@ -18,7 +18,7 @@ os.makedirs("static/uploads", exist_ok=True)
 # Setup CORS middleware to allow requests from your React frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Update with your React app's URL
+    allow_origins=["http://localhost:5173"],  # Update with your React app's URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
