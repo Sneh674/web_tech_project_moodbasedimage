@@ -22,14 +22,27 @@ const Home = () => {
           "https://t4.ftcdn.net/jpg/01/71/77/55/240_F_171775542_RvalSl5S077SLOpU9a7OkjurM0Q0sQBA.jpg",
          ],
     
-    angry: ["https://example.com/angry1.jpg", "https://example.com/angry2.jpg"],
+    angry: ["https://example.com/angry1.jpg", "https://example.com/angry2.jpg",
+           "https://t4.ftcdn.net/jpg/00/56/93/53/240_F_56935312_NiqxkRKOdGSJd86Tc2uLycL9fkUsIlRW.jpg",
+           "https://t3.ftcdn.net/jpg/01/69/24/64/240_F_169246402_jL8xyoXVIlVFJ1uBQPrCsUynnRTPRdS0.jpg",
+           "https://t3.ftcdn.net/jpg/00/84/36/70/240_F_84367026_MkHHQABaN0v7f8qKaHDR5QDTwR1Xpuj1.jpg",
+           "https://t4.ftcdn.net/jpg/04/75/30/95/240_F_475309541_1udGD69nihRTTGNDwdoVE6aeNptZvmkA.jpg",
+           "https://t4.ftcdn.net/jpg/02/25/97/85/240_F_225978535_TeZHvgzemKoYUs0Gt55YZP9vFnpErZJB.jpg",
+           ],
     relaxed: [
       "https://example.com/relaxed1.jpg",
       "https://example.com/relaxed2.jpg",
+      "https://t3.ftcdn.net/jpg/01/07/48/44/240_F_107484412_OlkEw8Fzo4im5GwQFiS5q1q7ancEuuP8.jpg",
+      "https://t4.ftcdn.net/jpg/02/74/03/45/240_F_274034581_v6Swuj96Aofueg5EXnA2WDThczGexqSj.jpg",
+      "https://t4.ftcdn.net/jpg/03/67/40/17/240_F_367401728_2x0nTl8qsVmlsupgB0W5Rlt3uREALUvE.jpg",
     ],
     excited: [
       "https://example.com/excited1.jpg",
       "https://example.com/excited2.jpg",
+      "https://t4.ftcdn.net/jpg/01/48/45/97/240_F_148459763_tFAVDLg6WvuSFwb00nTDGmOH93OwPW49.jpg",
+      "https://t3.ftcdn.net/jpg/01/53/08/92/240_F_153089208_IkDKaALcUg9zx1lmPlzCZ8Z7unEXgvWo.jpg",
+      "https://t3.ftcdn.net/jpg/01/53/08/92/240_F_153089208_IkDKaALcUg9zx1lmPlzCZ8Z7unEXgvWo.jpg",
+      "https://t4.ftcdn.net/jpg/07/88/86/71/240_F_788867162_WZP7Kt8FzfqUBSzr2r1flGP6hVuLTkDv.jpg",
     ],
   };
 
