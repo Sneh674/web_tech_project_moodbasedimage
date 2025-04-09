@@ -12,8 +12,16 @@ const Home = () => {
       "https://www.thelist.com/img/gallery/ways-to-start-your-day-in-a-good-mood/intro.jpg",
       "https://images5.alphacoders.com/433/433455.jpg",
       "https://media.istockphoto.com/id/2196087139/photo/dog-gives-paw-to-a-woman-making-high-five-gesture.webp?s=2048x2048&w=is&k=20&c=eCMmC9mx7HEA0rXrKo4FAp3G4_Qonh_kPF8MQVRMfZU=",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDchHNSrA1bfcmv7K1p6ERitDmxxEmtpA2S8s5PczpB96zRpgS-TeNvhc&s",
     ],
-    sad: ["https://example.com/sad1.jpg", "https://example.com/sad2.jpg"],
+    sad: ["https://example.com/sad1.jpg", "https://example.com/sad2.jpg",
+          "https://t3.ftcdn.net/jpg/02/94/78/20/360_F_294782061_mGGShSiRjTbOdj9lT25tmTGUDwQl3yGg.webp",
+          "https://t3.ftcdn.net/jpg/02/10/24/92/360_F_210249202_rIlmyQxgw3YWqPo2lsmCXMK9BnIhwSEe.webp",
+          "https://t3.ftcdn.net/jpg/06/03/31/10/360_F_603311014_qyxMDIjJkgknDYSqdLO5GahBoeW5l3i6.webp",
+          "https://media.istockphoto.com/id/1015957180/photo/young-girl-covering-her-face-with-her-hands.jpg?s=612x612&w=0&k=20&c=Mey1NU4Oq1j6vrYEUXXYVDYiW8Dt9gEWr41vnvlhANY=",
+          "https://t4.ftcdn.net/jpg/01/71/77/55/240_F_171775542_RvalSl5S077SLOpU9a7OkjurM0Q0sQBA.jpg",
+         ],
+    
     angry: ["https://example.com/angry1.jpg", "https://example.com/angry2.jpg"],
     relaxed: [
       "https://example.com/relaxed1.jpg",
