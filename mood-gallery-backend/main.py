@@ -11,6 +11,7 @@ from typing import Optional
 # Import emotion prediction
 from emotion_model import predict_emotion
 
+# uvicorn main:app --reload
 app = FastAPI()
 
 # Setup directories
@@ -68,4 +69,7 @@ async def upload_file(
             "predicted_emotion": emotion
         })
 
+    if file_path and os.path.exists(file_path):
+            os.remove(file_path)
+            
     return JSONResponse(content=response_data)
