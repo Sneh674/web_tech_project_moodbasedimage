@@ -2,8 +2,10 @@
 
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import TextVectorization, Embedding, GlobalAveragePooling1D, Dense, Dropout
+from tensorflow.keras.models import load_model
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
+# from dataset import texts, labels
 
 # Sample training data (expand this with more real-world examples for better accuracy)
 texts = [
@@ -40,6 +42,7 @@ model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=
 
 # Train model
 model.fit(vectorized_texts, np.array(labels_encoded), epochs=50, verbose=0)
+model.save("emotion_model.h5")
 
 # Prediction function
 def predict_emotion(text: str) -> str:
@@ -53,3 +56,4 @@ if __name__ == "__main__":
     sample = "I’m so frustrated with everything!"
     emotion = predict_emotion(sample)
     print(f"Predicted Emotion: {emotion}")
+

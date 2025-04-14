@@ -16,16 +16,20 @@ const Detect = () => {
     formData.append("text", text);
 
     try {
-      // const res = await axios.post("http://localhost:8000/api/upload", formData, {
+      const res = await axios.post(
+        "http://localhost:8000/api/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      // const res = await axios.post("https://web-tech-project-moodbasedimage.onrender.com/api/upload", formData, {
       //   headers: {
       //     "Content-Type": "multipart/form-data",
       //   },
       // });
-      const res = await axios.post("https://web-tech-project-moodbasedimage.onrender.com/api/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
       setResponse(res.data);
       console.log(res.data);
     } catch (err) {
@@ -42,7 +46,7 @@ const Detect = () => {
           type="file"
           name="image"
           onChange={(e) => setImage(e.target.files[0])}
-        //   required
+          //   required
         />
         <input
           type="text"
