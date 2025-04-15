@@ -11,7 +11,7 @@ from typing import Optional
 # Import emotion prediction
 from emotion_model import predict_emotion
 
-# uvicorn main:app --reload
+### uvicorn main:app --reload
 app = FastAPI()
 
 # Setup directories
@@ -37,12 +37,22 @@ def read_root():
 async def upload_file(
     image: Optional[UploadFile] = File(None),
     text: Optional[str] = Form(None)
-):
+):# Remove the temporary image file if it exists
+    temp_image_path = "static/uploads/tempimage.jpeg"
+    if os.path.exists(temp_image_path):
+        os.remove(temp_image_path)
+    temp_image_path = "static/uploads/tempimage.png"
+    if os.path.exists(temp_image_path):
+        os.remove(temp_image_path)
+    temp_image_path = "static/uploads/tempimage.jpg"
+    if os.path.exists(temp_image_path):
+        os.remove(temp_image_path)
+    
     if not image and not text:
         return JSONResponse(content={"error": "Either image or text must be provided."}, status_code=400)
 
     response_data = {
-        "message": "Upload successful"
+        "message": "Detection successful"
     }
 
     # Handle image saving
@@ -50,7 +60,8 @@ async def upload_file(
         timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
         unique_id = uuid.uuid4().hex[:8]
         file_extension = os.path.splitext(image.filename)[1]
-        new_filename = f"{timestamp}-{unique_id}{file_extension}"
+        # new_filename = f"{timestamp}-{unique_id}{file_extension}"
+        new_filename = f"tempimage{file_extension}"
         file_path = f"static/uploads/{new_filename}"
 
         with open(file_path, "wb") as buffer:
@@ -69,7 +80,7 @@ async def upload_file(
             "predicted_emotion": emotion
         })
 
-    if file_path and os.path.exists(file_path):
-            os.remove(file_path)
+    # if file_path and os.path.exists(file_path):
+    #         os.remove(file_path)
             
     return JSONResponse(content=response_data)
