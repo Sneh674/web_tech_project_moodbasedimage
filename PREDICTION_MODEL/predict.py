@@ -1,23 +1,44 @@
-from tensorflow.keras.models import load_model
-from PIL import Image
+import tensorflow as tf
 import numpy as np
-import matplotlib.pyplot as plt
+import cv2
+import os
 
-emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral']
+MODEL_PATH = 'M:/PROJECTS/WEB_PROJECT/FINAL/model/final.keras'
+IMG_SIZE = (100, 100)
+CLASS_LABELS = ['Angry', 'Disgust', 'Fear', 'Happiness', 'Neutral', 'Sadness', 'Surprise']
 
-model = load_model('/content/drive/MyDrive/fer_model.h5')
+# image path
+#IMAGE_PATH = r"M:/PROJECTS/WEB_PROJECT/FINAL/dataset/test/Angry/test_0216_aligned.jpg"
+#IMAGE_PATH = r"M:/PROJECTS/WEB_PROJECT/FINAL/dataset/test/Neutral/test_2403_aligned.jpg"
+#IMAGE_PATH = r"M:/PROJECTS/WEB_PROJECT/FINAL/dataset/test/Sadness/test_0080_aligned.jpg"
 
+
+# Load model
+model = tf.keras.models.load_model(MODEL_PATH)
+print("Model loaded successfully.")
+
+# Function to preprocess image
+def preprocess_image(image_path):
+    if not os.path.exists(image_path):
+        raise ValueError(f"File does not exist: {image_path}")
+    
+    img = cv2.imread(image_path)
+    if img is None:
+        raise ValueError(f"cv2.imread failed to read image: {image_path}")
+    
+    img = cv2.resize(img, IMG_SIZE)
+    img = img / 255.0  # Normalize
+    img = np.expand_dims(img, axis=0)  # Add batch dimension
+    return img
+
+# Predict function
 def predict_emotion(image_path):
-    img = Image.open(image_path).convert('L').resize((48, 48))
-    img_array = np.array(img).reshape(1, 48, 48, 1) / 255.0
-    prediction = model.predict(img_array)
-    label = emotion_labels[np.argmax(prediction)]
+    img = preprocess_image(image_path)
+    preds = model.predict(img)
+    predicted_class = np.argmax(preds)
+    confidence = np.max(preds)
+    
+    print(f"Predicted Emotion: {CLASS_LABELS[predicted_class]} (Confidence: {confidence:.2f})")
 
-    # Show
-    plt.imshow(img, cmap='gray')
-    plt.title(f'Predicted: {label}')
-    plt.axis('off')
-    plt.show()
-
-# Example: put a test image at this path
-predict_emotion('/content/drive/MyDrive/Screenshot 2025-04-08 011913.png')
+# Run prediction
+predict_emotion(IMAGE_PATH)
