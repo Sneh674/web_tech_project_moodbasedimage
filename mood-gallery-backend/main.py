@@ -10,6 +10,7 @@ from typing import Optional
 
 # Import emotion prediction
 from emotion_model import predict_emotion
+from image_model import predict_image_emotion
 
 ### uvicorn main:app --reload
 app = FastAPI()
@@ -60,16 +61,19 @@ async def upload_file(
         timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
         unique_id = uuid.uuid4().hex[:8]
         file_extension = os.path.splitext(image.filename)[1]
-        # new_filename = f"{timestamp}-{unique_id}{file_extension}"
-        new_filename = f"tempimage{file_extension}"
+        new_filename = f"{timestamp}-{unique_id}{file_extension}"
+        # new_filename = f"tempimage{file_extension}"
         file_path = f"static/uploads/{new_filename}"
 
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(image.file, buffer)
 
+        # Predict emotion from image
+        image_prediction=predict_image_emotion(file_path)
         response_data.update({
             "image_filename": new_filename,
-            "image_url": f"/static/uploads/{new_filename}"
+            "image_url": f"/static/uploads/{new_filename}",
+            "image_predicted_emotion": image_prediction
         })
 
     # Handle emotion prediction from text
@@ -80,7 +84,7 @@ async def upload_file(
             "predicted_emotion": emotion
         })
 
-    # if file_path and os.path.exists(file_path):
-    #         os.remove(file_path)
+    if file_path and os.path.exists(file_path):
+            os.remove(file_path)
             
     return JSONResponse(content=response_data)
